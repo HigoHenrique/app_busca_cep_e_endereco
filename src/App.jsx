@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MostraCep from './components/MostrarCep';
@@ -16,16 +16,16 @@ function App() {
   const [enderecos, setEnderecos] = useState([])
 
   const handleCep = async (cep) => {
-    if(cep.length == 8){
+    if(cep.length === 8){
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
     const data = await response.json()
     console.log(data)
-    if(data["erro"] == "true"){
+    if(data["erro"] === "true"){
       alert("CEP não existe!")
       setCep("")
     }
     setDataCep(data)
-    }if(cep.length != 8 ){
+    }if(cep.length !== 8 ){
       alert("Digite um CEP válido!")
       setCep("")
     }
@@ -36,7 +36,7 @@ function App() {
     const response = await fetch(`https://viacep.com.br/ws/${estado}/${cidade}/${rua}/json/`)
     const data = await response.json()
     console.log(data)
-    if(data["erro"] == "true"){
+    if(data["erro"] === "true"){
       alert("Preencha os dados corretamente")
     }
     setEnderecos(data)
